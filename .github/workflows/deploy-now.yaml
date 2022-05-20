@@ -25,12 +25,6 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: list repo
-        run: ls -la
-
-      - name: list deploy-now
-        run: ls -la .deploy-now
-
       - name: Setup Node
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
         uses: actions/setup-node@v1
@@ -50,19 +44,9 @@ jobs:
         uses: ionos-deploy-now/template-renderer-action@v1
         id: template
         with:
-          output-directory: docs/.vuepress/dist
           secrets: |
             VUE_APP_USER: '${{ secrets.VUE_APP_USER }}'
             VUE_APP_PASSWORD: '${{ secrets.VUE_APP_PASSWORD }}'
-
-      - name: list files
-        run: tree -a
-
-      - name: list deploy-now
-        run: ls -la .deploy-now
-
-      - name: files rights
-        run: ls -la docs/.vuepress/dist
 
       - name: Deploy to IONOS
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
