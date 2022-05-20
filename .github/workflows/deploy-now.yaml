@@ -36,7 +36,7 @@ jobs:
             VUE_APP_PASSWORD: '${{ secrets.VUE_APP_PASSWORD }}'
 
       - name: list files
-        run: ls -la
+        run: tree -a
 
       - name: Setup Node
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
