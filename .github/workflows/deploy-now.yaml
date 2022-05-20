@@ -31,19 +31,6 @@ jobs:
       - name: list deploy-now
         run: ls -la .deploy-now
 
-      - name: Render templates
-        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
-        uses: ionos-deploy-now/template-renderer-action@v1
-        id: template
-        with:
-          output-directory: docs/.vuepress/dist
-          secrets: |
-            VUE_APP_USER: '${{ secrets.VUE_APP_USER }}'
-            VUE_APP_PASSWORD: '${{ secrets.VUE_APP_PASSWORD }}'
-
-      - name: list files
-        run: tree -a
-
       - name: files rights
         run: ls -la docs/.vuepress/dist
 
@@ -60,6 +47,25 @@ jobs:
         run: |
           npm ci
           npm run build
+
+      - name: Render templates
+        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
+        uses: ionos-deploy-now/template-renderer-action@v1
+        id: template
+        with:
+          output-directory: docs/.vuepress/dist
+          secrets: |
+            VUE_APP_USER: '${{ secrets.VUE_APP_USER }}'
+            VUE_APP_PASSWORD: '${{ secrets.VUE_APP_PASSWORD }}'
+
+      - name: list files
+        run: tree -a
+
+      - name: list deploy-now
+        run: ls -la .deploy-now
+
+      - name: files rights
+        run: ls -la docs/.vuepress/dist
 
       - name: Deploy to IONOS
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
