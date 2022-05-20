@@ -25,6 +25,9 @@ jobs:
         with:
           submodules: 'recursive'
 
+      - name: list repo
+        run: ls -la .deploy-now
+
       - name: Render templates
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
         uses: ionos-deploy-now/template-renderer-action@v1
