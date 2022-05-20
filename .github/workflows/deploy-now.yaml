@@ -30,6 +30,7 @@ jobs:
         uses: ionos-deploy-now/template-renderer-action@v1
         id: template
         with:
+          output-directory: docs/.vuepress/dist
           secrets: |
             VUE_APP_USER: '${{ secrets.VUE_APP_USER }}'
             VUE_APP_PASSWORD: '${{ secrets.VUE_APP_PASSWORD }}'
