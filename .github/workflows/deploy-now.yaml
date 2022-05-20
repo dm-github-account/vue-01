@@ -38,6 +38,9 @@ jobs:
       - name: list files
         run: tree -a
 
+      - name: files rights
+        run: ls -la docs/.vuepress/dist
+
       - name: Setup Node
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
         uses: actions/setup-node@v1
