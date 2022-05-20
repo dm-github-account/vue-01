@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /homepages/25/d4296453654/htdocs/.htpasswd
+Require valid-user

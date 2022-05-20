@@ -31,6 +31,8 @@ jobs:
         id: template
         with:
           secrets: |
+            VUE_APP_USER: '${{ secrets.VUE_APP_USER }}'
+            VUE_APP_PASSWORD: '${{ secrets.VUE_APP_PASSWORD }}'
 
       - name: Setup Node
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
