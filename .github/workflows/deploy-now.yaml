@@ -26,6 +26,9 @@ jobs:
           submodules: 'recursive'
 
       - name: list repo
+        run: ls -la
+
+      - name: list deploy-now
         run: ls -la .deploy-now
 
       - name: Render templates
